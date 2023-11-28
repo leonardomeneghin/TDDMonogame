@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "monogame", "monogame\monogame.csproj", "{EFC3137B-6112-442C-9C30-9D08B9BD22C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "monogame.testes", "monogame.testes\monogame.testes.csproj", "{485A569B-95F9-41C4-B471-7E1FCC62205C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "monogame.testes", "monogame.testes\monogame.testes.csproj", "{485A569B-95F9-41C4-B471-7E1FCC62205C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameHandlers", "GameHandlers\GameHandlers.csproj", "{CFAC8BB7-4457-4016-AC79-68F964B78FBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{485A569B-95F9-41C4-B471-7E1FCC62205C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{485A569B-95F9-41C4-B471-7E1FCC62205C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{485A569B-95F9-41C4-B471-7E1FCC62205C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFAC8BB7-4457-4016-AC79-68F964B78FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFAC8BB7-4457-4016-AC79-68F964B78FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFAC8BB7-4457-4016-AC79-68F964B78FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFAC8BB7-4457-4016-AC79-68F964B78FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

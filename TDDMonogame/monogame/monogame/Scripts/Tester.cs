@@ -11,7 +11,7 @@ namespace monogame.Scripts
     {
         public bool isBool()
         {
-            return false;
+            return true;
         }
     }
 }
