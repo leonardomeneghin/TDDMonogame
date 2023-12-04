@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameHandlers.Table;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,26 +9,32 @@ namespace monogame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Board _boardGame;
+        private GenerateTexturesHelper _generalAttributes;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            _generalAttributes = new GenerateTexturesHelper();
+            _generalAttributes.GenerateTextures(_graphics.GraphicsDevice);
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _boardGame = new Board();
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -42,9 +49,11 @@ namespace monogame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(GenerateTexturesHelper.GetBackGroundColor());
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin(SpriteSortMode.Deferred);
+            _boardGame.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -63,5 +63,71 @@ namespace monogame.testes.Handlers.Table
         {
             Assert.That(_boardGame.Lines[index], Is.EqualTo(new Rectangle(X, Y, width, height)));
         }
+        /// <summary>
+        /// Verifica se o board possui sa 9 regiões, 
+        /// </summary>
+        [TestCase()]
+        public void Board_has_9_Regions()
+        {
+            Assert.That(_boardGame.Regions.Length, Is.EqualTo(9));
+        }
+        /// <summary>
+        /// Verificar se as regiões não estão se sobrepondo.
+        /// </summary>
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        public void Center_Region_Does_Not_Overlap_Lines(int index)
+        {
+            Assert.That(HasOverLap(_boardGame.Regions[index].Area, _boardGame.Lines, -1), Is.False);
+        }
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        [TestCase(4)]
+        [TestCase(5)]
+        [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
+        public void Regions_Does_Not_Overlap_Other_Regions(int index)
+        {
+            Rectangle[] rectangles = new Rectangle[9] {
+                new Rectangle(100, 100, 94, 94),
+                new Rectangle(206, 100, 88, 94),
+                new Rectangle(300, 100, 94, 94),
+                new Rectangle(100, 206, 94, 88),
+                new Rectangle(206, 206, 88, 88),
+                new Rectangle(306, 206, 94, 88),
+                new Rectangle(100, 306, 94, 94),
+                new Rectangle(206, 306, 88, 94),
+                new Rectangle(306, 306, 94, 94)
+            };
+            Assert.That(HasOverLap(_boardGame.Regions[index].Area, rectangles, index), Is.False);
+        }
+        
+        /// <summary>
+        /// Funções de apoio para testes
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="lines"></param>
+        /// <returns></returns>
+        public bool HasOverLap(Rectangle rect, Rectangle[] lines, int index)
+        {
+            for (int i =0; i < lines.Length; i++)
+            {
+                if (i != index && rect.Intersects(lines[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
