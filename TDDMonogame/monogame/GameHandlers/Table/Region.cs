@@ -46,9 +46,17 @@ namespace GameHandlers.Table
                 return false;
             return true;
         }
-        public void InteractWithRegionByClick(MouseState currentMouseState, MouseState previousMouseState)
+        public bool IsActive()
         {
-            if (MouseHasClickedRegion(currentMouseState, previousMouseState, this.Area) && ShouldChangeState())
+            if (State == 1 || State == -1)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void InteractWithRegionByClick()
+        {
+            if (!IsActive())
             {
                 this.State = 1;
             }

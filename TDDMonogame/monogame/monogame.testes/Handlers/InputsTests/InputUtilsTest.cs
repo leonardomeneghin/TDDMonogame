@@ -47,7 +47,6 @@ namespace monogame.testes.Handlers.InputsTests
             Assert.That(GameHandlers.Input.IsMouseClicked(buttonPressedState, buttonPressedState), Is.False); //Pressionou + havia pressionado (não click)
 
         }
-           
         
     }
 }
