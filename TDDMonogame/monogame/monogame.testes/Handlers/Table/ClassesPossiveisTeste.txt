@@ -1,0 +1,9 @@
+
+### Classes possíveis para analisar a separação dos testes por domínio
+
+1. ConfiguracaoAnimacaoTable -> Responsável por setar a animação do fundo do board, por exemplo, fazer o board ficar vermelho sempre que ocorrer o "Lose Game".
+    Métodos:
+        - SetarCorVermelha()
+        - CheckColorTable()
+        - DoRedTableWhenLoseGame()
+        - DoSoftBlueTableWhenWinGame()

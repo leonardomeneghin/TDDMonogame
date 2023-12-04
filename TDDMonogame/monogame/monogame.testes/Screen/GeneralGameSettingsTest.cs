@@ -11,9 +11,9 @@ namespace monogame.testes.Screen
     public class GeneralGameSettingsTest
     {
         [TestCase()]
-        public void IsBackGroundWhite()
+        public void Is_BackGround_White()
         {
-            Assert.That(Color.White, Is.EqualTo(GameGeneralConfig.GetBackGroundColor()));
+            Assert.That(GameGeneralConfig.GetBackGroundColor(), Is.EqualTo(Color.White));
         }
 
     }

@@ -2,6 +2,7 @@ using monogame.Scripts;
 using NUnit.Framework;
 
 
+
 namespace monogame.teste
 {
     [TestFixture()]
@@ -17,6 +18,7 @@ namespace monogame.teste
         public void TestCase()
         {
             Assert.That(true, Is.EqualTo(tester.isBool()));
+            
         }
     }
 }
