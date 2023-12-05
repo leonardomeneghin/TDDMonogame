@@ -26,7 +26,7 @@ namespace monogame.testes.Handlers.Table
         [Test()]
         public void Has_Mouse_Clicked_Region4()
         {
-            _currentMouseState = new MouseState(50, 50, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
+            _currentMouseState = new MouseState(250, 250, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
             Assert.That(_stateManager.ClickedRegion(_boardGame.Regions, _currentMouseState, _previousMouseState), Is.EqualTo(4));
         }
         [Test()]

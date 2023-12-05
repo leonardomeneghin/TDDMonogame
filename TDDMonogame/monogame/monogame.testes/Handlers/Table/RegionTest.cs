@@ -101,7 +101,7 @@ namespace monogame.testes.Handlers.GeometryTests
         [TestCase()]
         public void Region_State_Changes_To_1_When_click()
         {
-            fieldRegionForClick.InteractWithRegionByClick(currentMouseState, previousMouseState);
+            fieldRegionForClick.InteractWithRegionByClick();
             Assert.That(fieldRegionForClick.State, Is.EqualTo(1));
         }
         /// <summary>
