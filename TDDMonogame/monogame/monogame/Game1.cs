@@ -11,12 +11,14 @@ namespace monogame
         private SpriteBatch _spriteBatch;
         private Board _boardGame;
         private GenerateTexturesHelper _generalAttributes;
+        private SpriteFont _font;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
 
         }
 
@@ -30,9 +32,8 @@ namespace monogame
 
         protected override void LoadContent()
         {
-
-
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _font = Content.Load<SpriteFont>("font");
             _boardGame = new Board();
 
         }

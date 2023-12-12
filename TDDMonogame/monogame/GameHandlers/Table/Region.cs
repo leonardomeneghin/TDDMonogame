@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GameHandlers.Table
 {
@@ -46,6 +47,11 @@ namespace GameHandlers.Table
                 return false;
             return true;
         }
+        /// <summary>
+        /// Identifica se o Estado da região está em uso por um jogador (estado -1 ou 1)
+        /// Para um estado não ativo, campo é diferente de (-1 ou 1)
+        /// </summary>
+        /// <returns>boolean</returns>
         public bool IsActive()
         {
             if (State == 1 || State == -1)
@@ -54,11 +60,29 @@ namespace GameHandlers.Table
             }
             return false;
         }
+        /// <summary>
+        /// Interage com a região modificando o estado e também o player atual caso região esteja inativa (state =0)
+        /// Modifica State para (-1 ou 1) e alterna entre os players usando currentPlayer de StateManager.
+        /// </summary>
         public void InteractWithRegionByClick()
         {
             if (!IsActive())
             {
-                this.State = 1;
+                State = StateManager.currentPlayer;
+                StateManager.UpdatePlayerState();
+            }
+        }
+        /// <summary>
+        /// Retorna um UPPER do simbolo de player (X para 1) e (O para -1)
+        /// </summary>
+        /// <returns></returns>
+        public string GetSymbol()
+        {
+            switch (State)
+            {
+                case 1: return "X";
+                case -1: return "O";
+                default: return "";
             }
         }
     }

@@ -101,8 +101,10 @@ namespace monogame.testes.Handlers.GeometryTests
         [TestCase()]
         public void Region_State_Changes_To_1_When_click()
         {
+            StateManager.currentPlayer = 1;
             fieldRegionForClick.InteractWithRegionByClick();
             Assert.That(fieldRegionForClick.State, Is.EqualTo(1));
+
         }
         /// <summary>
         /// Testcase: "Testar se o estado da região NÃO mudou para clickes fora da área"
@@ -126,6 +128,25 @@ namespace monogame.testes.Handlers.GeometryTests
             fieldRegionForClick.State = -1;
             fieldRegionForClick.InteractWithRegionByClick();
             Assert.That(fieldRegionForClick.State, Is.EqualTo(-1));
+        }
+        [Test()]
+        public void X_Is_Returned_For_1()
+        {
+            fieldRegion.State = 1;
+
+            Assert.That(fieldRegion.GetSymbol(), Is.EqualTo("X"));
+        }
+        [Test()]
+        public void O_Is_Returned_For_Minus1()
+        {
+            fieldRegion.State = -1;
+            Assert.That(fieldRegion.GetSymbol(), Is.EqualTo("O"));
+        }
+        [Test()]
+        public void Empty_String_For_0()
+        {
+            fieldRegion.State = 0;
+            Assert.That(fieldRegion.GetSymbol(), Is.EqualTo(""));
         }
 
     }

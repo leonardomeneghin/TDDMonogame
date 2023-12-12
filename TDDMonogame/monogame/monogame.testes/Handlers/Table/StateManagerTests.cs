@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace monogame.testes.Handlers.Table
             _stateManager = new StateManager();
 
             _previousMouseState = new MouseState(250, 250, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
+
+
 
         }
         [Test()]
@@ -42,5 +45,30 @@ namespace monogame.testes.Handlers.Table
             _stateManager.UpdateClickedRegion(_boardGame.Regions, _currentMouseState, _previousMouseState);
             Assert.That(_boardGame.Regions[4].State, Is.EqualTo(1));
         }
+        /// <summary>
+        /// Testa se o click vai alternar entre dois estados (-1 e 1) para diferenciar jogadores.
+        /// </summary>
+        [Test()]
+        public void Different_Clicked_Region_Have_Diff_States()
+        {
+            StateManager.currentPlayer = -1;
+            TestContext.Out.WriteLine("Current player from StateManager: " + StateManager.currentPlayer);
+            _boardGame.Regions[3].InteractWithRegionByClick();
+            Assert.That(_boardGame.Regions[3].State, Is.EqualTo(-1));
+            _boardGame.Regions[4].InteractWithRegionByClick();
+            Assert.That(_boardGame.Regions[4].State, Is.EqualTo(1));
+        }
+        [Test()]
+        public void Player_State_Has_Updated()
+        {
+            StateManager.currentPlayer = 1;
+            StateManager.UpdatePlayerState();
+            Assert.That(StateManager.currentPlayer, Is.EqualTo(-1));
+            StateManager.UpdatePlayerState();
+            Assert.That(StateManager.currentPlayer, Is.EqualTo(1));
+            
+        }
+
+
     }
 }
