@@ -1,14 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameHandlers.Table;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace GameHandlers
+namespace JogoDaVelha
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private SpriteFont _font;
+        private Board _board;
+        private GeneralAtributes _generalAttributes;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -19,14 +22,16 @@ namespace GameHandlers
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            _generalAttributes = new GeneralAtributes();
+            _generalAttributes.GenerateTextures(_graphics.GraphicsDevice);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            _font = Content.Load<SpriteFont>("Fonts/font");
+            _board = new Board(_font);
             // TODO: use this.Content to load your game content here
         }
 
@@ -43,8 +48,9 @@ namespace GameHandlers
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+            _board.Draw(_spriteBatch);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -161,7 +161,7 @@ namespace monogame.testes.Handlers.GeometryTests
         [Test()]
         public void Is_String_Position_Centered_Region()
         {
-            
+
             Assert.That(_regionWithText.StringPosition, Is.EqualTo(new Vector2(20, 32)));
         }
 

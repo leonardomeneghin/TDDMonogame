@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameHandlers.Table
+namespace JogoDaVelha
 {
-    public class GenerateTexturesHelper
+    public class GeneralAtributes
     {
         public static Texture2D _LineTexture { get; set; }
         public static Color BackGroundColor { get; set; }

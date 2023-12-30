@@ -13,17 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Font/File.spritefont
-/importer:FontDescriptionImporter
-/processor:LocalizedFontProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Font/File.spritefont
-
-#begin Font/File2.spritefont
+#begin Fonts/font.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:Font/File2.spritefont
+/build:Fonts/font.spritefont
 

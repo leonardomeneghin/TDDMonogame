@@ -7,6 +7,7 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GameHandlers\GameHandlers.csproj" />
-    <ProjectReference Include="..\monogame\monogame.csproj" />
+    <ProjectReference Include="..\JogoDaVelha\JogoDaVelha.csproj" />
   </ItemGroup>
 
 </Project>
