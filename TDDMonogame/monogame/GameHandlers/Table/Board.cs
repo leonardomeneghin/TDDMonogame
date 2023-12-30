@@ -19,7 +19,7 @@ namespace GameHandlers.Table
         public const int FIRST_POSITION = 195;
         public const int SECOND_POSITION = 295;
 
-        public Board()
+        public Board(SpriteFont font)
         {
             Thickness = 10;
             Length = 300;
@@ -30,15 +30,15 @@ namespace GameHandlers.Table
                 new Rectangle(BASE_INVERT_AXIS, SECOND_POSITION, Length, Thickness)
             };
             Regions = new Region[9] { 
-                new Region(100, 100, 94, 94),
-                new Region(206, 100, 88, 94),
-                new Region(306, 100, 94, 94),
-                new Region(100, 206, 94, 88),
-                new Region(206, 206, 88, 88),
-                new Region(306, 206, 94, 88),
-                new Region(100, 306, 94, 94),
-                new Region(206, 306, 88, 94),
-                new Region(306, 306, 94, 94)
+                new Region(100, 100, 94, 94, font),
+                new Region(206, 100, 88, 94, font),
+                new Region(306, 100, 94, 94, font),
+                new Region(100, 206, 94, 88, font),
+                new Region(206, 206, 88, 88, font),
+                new Region(306, 206, 94, 88, font),
+                new Region(100, 306, 94, 94, font),
+                new Region(206, 306, 88, 94, font),
+                new Region(306, 306, 94, 94, font)
             };
 
         }
@@ -48,6 +48,15 @@ namespace GameHandlers.Table
             foreach (Rectangle line in Lines)
             {
                 sb.Draw(GenerateTexturesHelper._LineTexture, line, Color.White);
+            }
+            DrawRegions(sb);
+        }
+        internal void DrawRegions(SpriteBatch sb) //Interessante usar o Draw de seu proprio objeto passando SpriteBatch, pois assim cada classe
+            //Fica responsável por desenhar o que está dentro de si.
+        {
+            foreach (var region in Regions)
+            {
+                region.Draw(sb);
             }
         }
     }

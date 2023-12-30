@@ -7,11 +7,15 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using GameHandlers.Table;
+using Microsoft.Xna.Framework.Graphics;
+
 namespace monogame.testes.Handlers.GeometryTests
 {
     [TestFixture()]
     public class RegionTest
     {
+        //Obs: This class is being smell due number of variables. Should create a Region Domain to test different cases of Region, such as
+        //Region dimensions, Region with text, Region receiving inputs, etc;
         private MouseState correctMouseStateRegion;
         private MouseState unclickedMouseStateRegion;
         private MouseState smallerThanRegion;
@@ -23,6 +27,10 @@ namespace monogame.testes.Handlers.GeometryTests
 
         private Region fieldRegion;
         private Region fieldRegionForClick;
+        private Region _regionWithText;
+
+        private SpriteFont _font;
+        
         [SetUp]
         public void SetUp()
         {
@@ -38,6 +46,8 @@ namespace monogame.testes.Handlers.GeometryTests
             fieldRegionForClick = new Region(10, 15, 20, 35);
             currentMouseState = new MouseState(20, 40, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //Inside and click
             previousMouseState = new MouseState(20, 40, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //Inside and click
+            //Defining a region with a text to display testcase
+            _regionWithText = new Region(10, 15, 20, 35, _font); //For now, font is null
         }
         /// <summary>
         /// Caso de teste: Testar se mouse está em uma região do retângulo onde se posicionaria X e O.
@@ -147,6 +157,12 @@ namespace monogame.testes.Handlers.GeometryTests
         {
             fieldRegion.State = 0;
             Assert.That(fieldRegion.GetSymbol(), Is.EqualTo(""));
+        }
+        [Test()]
+        public void Is_String_Position_Centered_Region()
+        {
+            
+            Assert.That(_regionWithText.StringPosition, Is.EqualTo(new Vector2(20, 32)));
         }
 
     }

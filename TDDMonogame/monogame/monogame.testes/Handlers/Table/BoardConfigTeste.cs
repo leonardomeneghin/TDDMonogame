@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace monogame.testes.Handlers.Table
 {
@@ -12,10 +13,12 @@ namespace monogame.testes.Handlers.Table
     public class BoardTeste
     {
         private Board _boardGame;
+        private SpriteFont _font;
         [SetUp()]
         public void SetUp()
         {
-            _boardGame = new Board();
+            _font = null;
+            _boardGame = new Board(_font);
         }
         /// <summary>
         /// Verifica se o board possui 4 linhas.

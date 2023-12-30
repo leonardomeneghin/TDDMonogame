@@ -7,22 +7,29 @@ using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameHandlers.Table
 {
     public class Region
     {
+        //Props here is OK because of code smell, whe should have properties where is used, not outside.
         public int State { get; set; }
         public Rectangle Area { get; set; }
+        private SpriteFont _font { get; set; }
+        public Vector2 StringPosition { get; set; }
 
         public Region()
         {
             State = 0;
         }
-        public Region(int x, int y, int width, int height) : this ()
+        public Region(int x, int y, int width, int height, SpriteFont font = null) : this ()
         {
+            _font = font;
             Area = new Rectangle(x, y, width, height);
+            StringPosition = new Vector2(Area.X + Area.Width/2, Area.Y + Area.Height/2); 
         }
+
 
         public static bool IsInRegion(MouseState mouse, Rectangle rect)
         {
@@ -84,6 +91,10 @@ namespace GameHandlers.Table
                 case -1: return "O";
                 default: return "";
             }
+        }
+        public void Draw(SpriteBatch sb)
+        {
+            sb.DrawString(_font, GetSymbol(), StringPosition, Color.Black);
         }
     }
 }
