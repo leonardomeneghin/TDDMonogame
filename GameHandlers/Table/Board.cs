@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameHandlers.Helper;
 using System;
 using System.Collections.Generic;
 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Input;
 
 namespace GameHandlers.Table
 {
@@ -15,6 +17,9 @@ namespace GameHandlers.Table
         public int Thickness{ get; set; }
         public int Length { get; set; }
         public Region[] Regions { get; set; }
+        public MouseState Current { get; set; }
+        public MouseState Previous { get; set; }
+
         public const int BASE_INVERT_AXIS = 100;
         public const int FIRST_POSITION = 195;
         public const int SECOND_POSITION = 295;
@@ -42,12 +47,21 @@ namespace GameHandlers.Table
             };
 
         }
+        public void Update(GameTime gameTime)
+        {
+            UpdateMouse(Mouse.GetState());
+        }
+        public void UpdateMouse(MouseState internalMouseState)
+        {
+            Previous = Current;
+            Current = internalMouseState;
+        }
         public void Draw(SpriteBatch sb)
         {
             
             foreach (Rectangle line in Lines)
             {
-                sb.Draw(GenerateTexturesHelper._LineTexture, line, Color.White);
+                sb.Draw(GeneralAtributes._LineTexture, line, Color.White);
             }
             DrawRegions(sb);
         }

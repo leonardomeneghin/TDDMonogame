@@ -1,4 +1,5 @@
 ﻿using GameHandlers.Table;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,12 @@ namespace monogame.testes.Handlers.Table
     {
         Board _boardGame;
         StateManager _stateManager;
-        MouseState _currentMouseState, _previousMouseState;
-
+        MouseState _currentMouseState, _previousMouseState, _newMouseState;
+        SpriteFont _font;
         [SetUp]
         public void Setup()
         {
-            _boardGame = new Board();
+            _boardGame = new Board(_font);
             _stateManager = new StateManager();
 
             _previousMouseState = new MouseState(250, 250, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
@@ -69,6 +70,20 @@ namespace monogame.testes.Handlers.Table
             
         }
 
+
+        [Test()]
+        public void Update_Board_When_Mouse_State()
+        {
+            _currentMouseState = new MouseState(250, 250, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
+            _newMouseState = new MouseState(666, 666, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
+            _boardGame.Previous = _previousMouseState;
+            _boardGame.Current = _currentMouseState;
+
+            _boardGame.UpdateMouse(_newMouseState);
+            Assert.That(_boardGame.Previous, Is.EqualTo(_currentMouseState));
+            Assert.That(_boardGame.Current, Is.EqualTo(_newMouseState));
+
+        }
 
     }
 }

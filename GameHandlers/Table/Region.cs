@@ -27,7 +27,7 @@ namespace GameHandlers.Table
         {
             _font = font;
             Area = new Rectangle(x, y, width, height);
-            StringPosition = new Vector2(Area.X + Area.Width/2, Area.Y + Area.Height/2); 
+            StringPosition = new Vector2(Area.X + Area.Width/2.5f, Area.Y + Area.Height/2.5f); 
         }
 
 
@@ -94,7 +94,7 @@ namespace GameHandlers.Table
         }
         public void Draw(SpriteBatch sb)
         {
-            sb.DrawString(_font, GetSymbol(), StringPosition, Color.Black);
+            sb.DrawString(_font, GetSymbol(), StringPosition, Color.White);
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using monogame.GameScene;
+using GameHandlers.Helper;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 namespace monogame.testes.Screen
 {
     [TestFixture()]
@@ -13,7 +15,7 @@ namespace monogame.testes.Screen
         [TestCase()]
         public void Is_BackGround_White()
         {
-            Assert.That(GameGeneralConfig.GetBackGroundColor(), Is.EqualTo(Color.White));
+            Assert.That(GeneralAtributes.BackGroundColor(), Is.EqualTo(Color.White));
         }
 
     }

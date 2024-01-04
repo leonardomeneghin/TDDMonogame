@@ -14,14 +14,17 @@ namespace monogame.testes.Handlers.GeometryTests
     [TestFixture()]
     public class RegionTest
     {
-        //Obs: This class is being smell due number of variables. Should create a Region Domain to test different cases of Region, such as
+        //Obs: This class is being smell due number of variables. Should initiate our variable inside a test. This is better to avoid variable
         //Region dimensions, Region with text, Region receiving inputs, etc;
+        //We dont need to "Private" outside method because each method is particular;
         private MouseState correctMouseStateRegion;
         private MouseState unclickedMouseStateRegion;
         private MouseState smallerThanRegion;
         private MouseState greaterThanRegion;
         private MouseState currentMouseState;
         private MouseState previousMouseState;
+        private MouseState _newMouseState;
+        private MouseState _currentMouseState;
 
         private Rectangle rect;
 
@@ -34,6 +37,8 @@ namespace monogame.testes.Handlers.GeometryTests
         [SetUp]
         public void SetUp()
         {
+            //Above, we have a smell code called Bloater. We should improve this by creating a new class for each case-test.
+            //Case test 1: Checking region dimensions; Case test 2; Checking region responses (X,O,""), etc;
             correctMouseStateRegion = new MouseState(50, 80, 0, ButtonState.Pressed, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //Inside and click
             unclickedMouseStateRegion = new MouseState(50, 80, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //INsinde and dont click
             smallerThanRegion = new MouseState(10, 10, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //Smaller and dont click
@@ -48,6 +53,8 @@ namespace monogame.testes.Handlers.GeometryTests
             previousMouseState = new MouseState(20, 40, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released); //Inside and click
             //Defining a region with a text to display testcase
             _regionWithText = new Region(10, 15, 20, 35, _font); //For now, font is null
+
+            
         }
         /// <summary>
         /// Caso de teste: Testar se mouse está em uma região do retângulo onde se posicionaria X e O.
@@ -162,8 +169,9 @@ namespace monogame.testes.Handlers.GeometryTests
         public void Is_String_Position_Centered_Region()
         {
 
-            Assert.That(_regionWithText.StringPosition, Is.EqualTo(new Vector2(20, 32)));
+            Assert.That(_regionWithText.StringPosition, Is.EqualTo(new Vector2(18, 29)));
         }
+
 
     }
 }
