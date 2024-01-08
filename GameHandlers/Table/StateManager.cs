@@ -24,11 +24,10 @@ namespace GameHandlers.Table
             }
             return -1;
         }
-
-        public void UpdateClickedRegion(Region[] regions, MouseState currentMouseState, MouseState previousMouseState)
+        public void UpdateClickedRegion(Region[] regions, int index)
         {
-            var index = ClickedRegion(regions, currentMouseState, previousMouseState);
-            if (index !=-1)
+
+            if (regions.Length > 0 && index != -1)
             {
                regions[index].InteractWithRegionByClick();
             }

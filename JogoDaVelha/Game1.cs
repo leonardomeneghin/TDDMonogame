@@ -22,7 +22,7 @@ namespace JogoDaVelha
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
             _generalAttributes = new GeneralAtributes();
             _generalAttributes.GenerateTextures(_graphics.GraphicsDevice);
             base.Initialize();
@@ -32,8 +32,8 @@ namespace JogoDaVelha
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _font = Content.Load<SpriteFont>("Fonts/font");
-            _board = new Board(_font);
-            // TODO: use this.Content to load your game content here
+            _board = new Board(_font, new StateManager());
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,7 +41,8 @@ namespace JogoDaVelha
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+
+            _board.Update(gameTime);
 
             base.Update(gameTime);
         }

@@ -19,11 +19,13 @@ namespace GameHandlers.Table
         public Region[] Regions { get; set; }
         public MouseState Current { get; set; }
         public MouseState Previous { get; set; }
+        
 
         public const int BASE_INVERT_AXIS = 100;
         public const int FIRST_POSITION = 195;
         public const int SECOND_POSITION = 295;
 
+        private StateManager _stateManager; //Dependência forte aqui, pode ser substituida por interface
         public Board(SpriteFont font)
         {
             Thickness = 10;
@@ -47,9 +49,14 @@ namespace GameHandlers.Table
             };
 
         }
+        public Board(SpriteFont font, StateManager stateManager) : this(font)
+        {
+            _stateManager = stateManager;
+        }
         public void Update(GameTime gameTime)
         {
             UpdateMouse(Mouse.GetState());
+            UpdateClicks(_stateManager.ClickedRegion(Regions, Current, Previous));
         }
         public void UpdateMouse(MouseState internalMouseState)
         {
@@ -72,6 +79,10 @@ namespace GameHandlers.Table
             {
                 region.Draw(sb);
             }
+        }
+        public void UpdateClicks(int idx)
+        {
+            _stateManager.UpdateClickedRegion(Regions, idx);
         }
     }
 }
