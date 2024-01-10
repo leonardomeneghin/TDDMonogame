@@ -49,20 +49,23 @@ namespace GameHandlers.Table
                 new Region(206, 306, 88, 94, font),
                 new Region(306, 306, 94, 94, font)
             };
-
         }
         public Board(SpriteFont font, StateManager stateManager, WinStateManager winStateManager) : this(font)
         {
             _stateManager = stateManager;
             _winStateManager = winStateManager;
         }
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             if (_winStateManager.CanKeepPlaying)
             {
                 UpdateMouse(Mouse.GetState());
                 UpdateClicks(_stateManager.ClickedRegion(Regions, Current, Previous));
                 _winStateManager.Update(Regions);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && !Keyboard.GetState().IsKeyUp(Keys.R))
+            {
+                ResetGame();
             }
 
         }
@@ -93,10 +96,20 @@ namespace GameHandlers.Table
         {
             if(!_winStateManager.CanKeepPlaying && !string.IsNullOrEmpty(_winStateManager.PlayerWhoWon))
                 sb.DrawString(_font, _winStateManager.PlayerWhoWon, new Vector2(400, 100), Color.White);
+            if(!_winStateManager.CanKeepPlaying)
+                sb.DrawString(_font, _winStateManager.InfoAfterGameEnd, new Vector2(450, 400), Color.White);
         }
         public void UpdateClicks(int idx)
         {
             _stateManager.UpdateClickedRegion(Regions, idx);
+        }
+        public void ResetGame()
+        {
+            foreach(var region in Regions)
+            {
+                region.State = 0;
+            }
+            _winStateManager.CanKeepPlaying = true;
         }
     }
 }

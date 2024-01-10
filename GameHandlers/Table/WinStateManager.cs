@@ -11,10 +11,12 @@ namespace GameHandlers.Table
     {
         public string PlayerWhoWon { get; set; }
         public bool CanKeepPlaying { get; set; }
+        public string InfoAfterGameEnd { get; set; }
         public WinStateManager()
         {
             PlayerWhoWon = string.Empty;
             CanKeepPlaying = true;
+            InfoAfterGameEnd = "Press 'R' to restart";
         }
 
         public int WichPlayerWon(Region[] regions)
