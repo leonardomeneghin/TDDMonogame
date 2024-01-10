@@ -1,4 +1,5 @@
 ﻿using GameHandlers.Table;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -114,6 +115,17 @@ namespace monogame.testes.Handlers.Table
             Assert.That(_boardGame.Regions[1].State, Is.EqualTo(-1));
 
         }
+        [Test()]
+        public void When_R_Input_Pressed_Reset_Game()
+        {
+            Setup();
 
+            _boardGame.ResetGame();
+            foreach(var region in _boardGame.Regions)
+            {
+                Assert.That(region.State, Is.EqualTo(0));
+            }
+
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace JogoDaVelha
                 Exit();
 
 
-            _board.Update(gameTime);
+            _board.Update();
 
             base.Update(gameTime);
         }
