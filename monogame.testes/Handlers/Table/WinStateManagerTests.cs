@@ -82,5 +82,21 @@ namespace monogame.testes.Handlers.Table
             _regions[6].State = -1;
             Assert.That(_winStateManager.WichPlayerWon(_regions), Is.EqualTo(-1));
         }
+        [Test()]
+        public void When_No_Player_Has_Won()
+        {
+            SetUp();
+            Assert.That(_winStateManager.PlayerWhoWon, Is.EqualTo(string.Empty));
+        }
+        [TestCase(1)]
+        [TestCase(1)]
+        public void When_SomeOne_Wins_Game_Stop(int x)
+        {
+            _regions[2].State = x;
+            _regions[4].State = x;
+            _regions[6].State = x;
+            _winStateManager.Update(_regions);
+            Assert.That(_winStateManager.CanKeepPlaying, Is.EqualTo(false));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,15 @@ namespace GameHandlers.Table
 {
     public class WinStateManager
     {
-       public int WichPlayerWon(Region[] regions)
+        public string PlayerWhoWon { get; set; }
+        public bool CanKeepPlaying { get; set; }
+        public WinStateManager()
+        {
+            PlayerWhoWon = string.Empty;
+            CanKeepPlaying = true;
+        }
+
+        public int WichPlayerWon(Region[] regions)
         {
             //pt-br: N usar variáveis aqui, tipo c1+n => isso cria um b.o. pra outro desenvolvedor ler;
             //en-US: te vira. zuera... : don't use variables like c1+n here, because its hard to developers read it.
@@ -48,6 +57,23 @@ namespace GameHandlers.Table
                     return field;
             }
             return 0;
+        }
+        public void Update(Region[] regions)
+        {
+            var won = WichPlayerWon(regions);
+            switch (won)
+            {
+                case 1:
+                    CanKeepPlaying = false;
+                    PlayerWhoWon = "P1 (X) Won !!!";
+                    break;
+                case -1:
+                    CanKeepPlaying = false;
+                    PlayerWhoWon = "P2 (O) Won !!!";
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

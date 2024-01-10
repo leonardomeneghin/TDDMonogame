@@ -21,7 +21,7 @@ namespace monogame.testes.Handlers.Table
         {
 
             _stateManager = new StateManager();
-            _boardGame = new Board(_font, _stateManager);
+            _boardGame = new Board(_font, _stateManager, null);
             _previousMouseState = new MouseState(250, 250, 0, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released, ButtonState.Released);
 
 

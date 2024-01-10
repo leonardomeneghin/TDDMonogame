@@ -32,7 +32,7 @@ namespace JogoDaVelha
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _font = Content.Load<SpriteFont>("Fonts/font");
-            _board = new Board(_font, new StateManager());
+            _board = new Board(_font, new StateManager(), new WinStateManager());
 
         }
 
